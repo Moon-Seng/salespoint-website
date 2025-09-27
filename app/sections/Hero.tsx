@@ -1,12 +1,49 @@
+"use client";
+import { useEffect, useRef } from "react";
+import { gsap } from "../../lib/gsap";
 import Container from "../components/Container";
 import Button from "../components/Button";
 import CheckIcon from "../components/CheckIcon";
 
 export default function Hero() {
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const rightContentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (leftContentRef.current) {
+      gsap.fromTo(
+        leftContentRef.current.children,
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power2.out",
+        }
+      );
+    }
+
+    if (rightContentRef.current) {
+      gsap.fromTo(
+        rightContentRef.current,
+        { opacity: 0, x: 50, scale: 0.9 },
+        {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 1,
+          delay: 0.3,
+          ease: "power2.out",
+        }
+      );
+    }
+  }, []);
+
   return (
     <section className="min-h-screen bg-white relative overflow-hidden">
       <Container className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
-        <div className="space-y-8">
+        <div ref={leftContentRef} className="space-y-8">
           <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 font-space-grotesk leading-tight">
             Smart-Thinking &<br />
             Innovative Solution.
@@ -43,7 +80,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative">
+        <div ref={rightContentRef} className="relative">
           {/* Main Dashboard Card */}
           <div className="bg-white rounded-2xl shadow-xl p-6 relative z-10">
             {/* Top Stats */}

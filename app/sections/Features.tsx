@@ -1,66 +1,97 @@
+"use client";
+import { useEffect, useRef } from "react";
+import { gsap, ScrollTrigger } from "../../lib/gsap";
+import AnalyticsIcon from "../assets/Icon/Analytics";
 import Container from "../components/Container";
+import FeatureCard from "../components/FeatureCard";
+import features from "../data/features";
 
 export default function Features() {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      gsap.fromTo(
+        headerRef.current.children,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
+
+    if (cardsRef.current) {
+      gsap.fromTo(
+        cardsRef.current.children,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
+
+    if (statsRef.current) {
+      gsap.fromTo(
+        statsRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
+  }, []);
+
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 md:py-16 lg:py-20 bg-white">
       <Container>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 font-inter mb-6">
+        <div ref={headerRef} className="text-center mb-8 md:mb-12 lg:mb-16">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 font-space-grotesk mb-4 md:mb-6 px-4">
             How To Grow Your Business
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto font-inter">
+          <p className="text-sm md:text-md text-gray-600 max-w-2xl mx-auto font-inter px-4">
             Class aptent taciti sociosqu ad litora torquen conubia nostramase
             inceptos himenaeo. Phasellus metus nisl euismod eget lorem.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-6 bg-green-100 rounded-lg flex items-center justify-center">
-              <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 font-inter">
-              Active User Analytics
-            </h3>
-            <p className="text-gray-600 font-inter">
-              Class aptent taciti sociosqu litora torquen conubia nostram.
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-6 bg-red-100 rounded-lg flex items-center justify-center">
-              <svg className="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 font-inter">
-              Smart Coding Development
-            </h3>
-            <p className="text-gray-600 font-inter">
-              Morbi eget aliquet finibus, best condimentum aliquet quam.
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-6 bg-green-100 rounded-lg flex items-center justify-center">
-              <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 font-inter">
-              User Friendly Interface
-            </h3>
-            <p className="text-gray-600 font-inter">
-              Quisque magna, sollicitudin vitae, lobortis feugiat arcu.
-            </p>
-          </div>
+        <div
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12 lg:mb-16 px-4 md:px-0"
+        >
+          {features.map((feature, index) => (
+            <FeatureCard key={index + feature.title} feature={feature} />
+          ))}
         </div>
 
-        <div className="text-center">
-          <p className="text-gray-600 font-inter">
-            Approx <span className="text-2xl font-bold text-primary">875+</span> team members ready to online support for you
+        <div ref={statsRef} className="text-center">
+          <p className="text-gray-600 font-inter flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4">
+            Approx
+            <span className="text-xl md:text-2xl font-bold text-primary">
+              875 +
+            </span>
+            team members ready to online support for you
           </p>
         </div>
       </Container>

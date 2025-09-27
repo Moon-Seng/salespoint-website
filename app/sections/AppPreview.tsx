@@ -1,12 +1,56 @@
+"use client";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../components/Container";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function AppPreview() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const rightContentRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Left content animation
+      gsap.fromTo(leftContentRef.current,
+        { x: -100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, scrollTrigger: {
+          trigger: leftContentRef.current,
+          start: "top 80%"
+        }}
+      );
+      
+      // Right content animation
+      gsap.fromTo(rightContentRef.current,
+        { x: 100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, scrollTrigger: {
+          trigger: rightContentRef.current,
+          start: "top 80%"
+        }}
+      );
+      
+      // Cards animation
+      gsap.fromTo(cardsRef.current,
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, stagger: 0.1, scrollTrigger: {
+          trigger: rightContentRef.current,
+          start: "top 70%"
+        }}
+      );
+    }, sectionRef);
+    
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section ref={sectionRef} className="py-20 bg-white overflow-hidden">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 font-inter mb-6">
+          <div ref={leftContentRef}>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 font-space-grotesk mb-6">
               Ready To Use Our App
               <br />
               With No Hidden Malware
@@ -30,7 +74,7 @@ export default function AppPreview() {
             </p>
           </div>
 
-          <div className="relative">
+          <div ref={rightContentRef} className="relative">
             <div className="relative bg-primary rounded-full w-96 h-96 mx-auto">
               <svg
                 className="absolute top-0 right-0 w-32 h-32 text-yellow-400"
@@ -45,7 +89,7 @@ export default function AppPreview() {
                 />
               </svg>
 
-              <div className="absolute top-8 right-8 bg-white rounded-lg p-3 shadow-lg">
+              <div ref={(el) => el && (cardsRef.current[0] = el)} className="absolute top-8 right-8 bg-white rounded-lg p-3 shadow-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
                     <svg
@@ -63,7 +107,7 @@ export default function AppPreview() {
                 </div>
               </div>
 
-              <div className="absolute top-1/2 left-4 bg-white rounded-lg p-4 shadow-lg">
+              <div ref={(el) => el && (cardsRef.current[1] = el)} className="absolute top-1/2 left-4 bg-white rounded-lg p-4 shadow-lg">
                 <div className="w-32 h-20 bg-gray-100 rounded mb-2 relative">
                   <svg
                     className="absolute inset-0 w-full h-full"
@@ -80,7 +124,7 @@ export default function AppPreview() {
                 <div className="text-xs text-gray-600">10AM</div>
               </div>
 
-              <div className="absolute bottom-8 left-8 bg-white rounded-lg p-3 shadow-lg">
+              <div ref={(el) => el && (cardsRef.current[2] = el)} className="absolute bottom-8 left-8 bg-white rounded-lg p-3 shadow-lg">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <span className="text-sm font-medium">Task Completed</span>
@@ -88,7 +132,7 @@ export default function AppPreview() {
                 <div className="text-2xl font-bold">12</div>
               </div>
 
-              <div className="absolute top-1/3 right-4 bg-white rounded-lg p-3 shadow-lg">
+              <div ref={(el) => el && (cardsRef.current[3] = el)} className="absolute top-1/3 right-4 bg-white rounded-lg p-3 shadow-lg">
                 <div className="text-sm font-medium mb-2">
                   Scheduled time for work
                 </div>
