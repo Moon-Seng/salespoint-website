@@ -1,11 +1,15 @@
 "use client";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import Container from "../components/Container";
 import Button from "../components/Button";
 import LetterLogo from "../components/LetterLogo";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   return (
     <nav className="bg-white shadow-sm">
@@ -15,42 +19,48 @@ export default function Navbar() {
         </div>
 
         <div className="hidden lg:flex items-center space-x-8">
-          <a
-            href="#home"
+          <Link
+            href={isHomePage ? "#home" : "/"}
             className="text-gray-700 hover:text-primary font-medium"
           >
             Home
-          </a>
-          <a
-            href="#pages"
+          </Link>
+          <Link
+            href={isHomePage ? "#pages" : "/#pages"}
             className="text-gray-700 hover:text-primary font-medium"
           >
             Pages
-          </a>
-          <a
-            href="#pricing"
+          </Link>
+          <Link
+            href={isHomePage ? "#pricing" : "/#pricing"}
             className="text-gray-700 hover:text-primary font-medium"
           >
             Pricing
-          </a>
-          <a
-            href="#portfolio"
+          </Link>
+          <Link
+            href={isHomePage ? "#portfolio" : "/#portfolio"}
             className="text-gray-700 hover:text-primary font-medium"
           >
             Portfolio
-          </a>
-          <a
-            href="#blog"
+          </Link>
+          <Link
+            href={isHomePage ? "#blog" : "/#blog"}
             className="text-gray-700 hover:text-primary font-medium"
           >
             Blog
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href={isHomePage ? "#contact" : "/#contact"}
             className="text-gray-700 hover:text-primary font-medium"
           >
             Contact
-          </a>
+          </Link>
+          <Link
+            href="/help"
+            className="text-gray-700 hover:text-primary font-medium"
+          >
+            Help
+          </Link>
           <Button>Get Started Free</Button>
         </div>
 
@@ -65,42 +75,48 @@ export default function Navbar() {
         {isOpen && (
           <div className="absolute top-full left-0 w-full bg-white shadow-lg lg:hidden z-50">
             <div className="flex flex-col p-4 space-y-4">
-              <a
-                href="#home"
+              <Link
+                href={isHomePage ? "#home" : "/"}
                 className="text-gray-700 hover:text-primary font-medium"
               >
                 Home
-              </a>
-              <a
-                href="#pages"
+              </Link>
+              <Link
+                href={isHomePage ? "#pages" : "/#pages"}
                 className="text-gray-700 hover:text-primary font-medium"
               >
                 Pages
-              </a>
-              <a
-                href="#pricing"
+              </Link>
+              <Link
+                href={isHomePage ? "#pricing" : "/#pricing"}
                 className="text-gray-700 hover:text-primary font-medium"
               >
                 Pricing
-              </a>
-              <a
-                href="#portfolio"
+              </Link>
+              <Link
+                href={isHomePage ? "#portfolio" : "/#portfolio"}
                 className="text-gray-700 hover:text-primary font-medium"
               >
                 Portfolio
-              </a>
-              <a
-                href="#blog"
+              </Link>
+              <Link
+                href={isHomePage ? "#blog" : "/#blog"}
                 className="text-gray-700 hover:text-primary font-medium"
               >
                 Blog
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href={isHomePage ? "#contact" : "/#contact"}
                 className="text-gray-700 hover:text-primary font-medium"
               >
                 Contact
-              </a>
+              </Link>
+              <Link
+                href="/help"
+                className="text-gray-700 hover:text-primary font-medium"
+              >
+                Help
+              </Link>
               <Button>Get Started Free</Button>
             </div>
           </div>

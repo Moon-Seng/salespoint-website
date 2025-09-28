@@ -24,6 +24,8 @@ export default function Features() {
           scrollTrigger: {
             trigger: headerRef.current,
             start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
           },
         }
       );
@@ -41,6 +43,8 @@ export default function Features() {
           scrollTrigger: {
             trigger: cardsRef.current,
             start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
           },
         }
       );
@@ -57,6 +61,8 @@ export default function Features() {
           scrollTrigger: {
             trigger: statsRef.current,
             start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
           },
         }
       );

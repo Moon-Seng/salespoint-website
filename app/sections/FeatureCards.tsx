@@ -43,15 +43,24 @@ export default function FeatureCards() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(cardsRef.current,
+      gsap.fromTo(
+        cardsRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%"
-        }}
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
+          },
+        }
       );
     }, sectionRef);
-    
+
     return () => ctx.revert();
   }, []);
 

@@ -25,6 +25,8 @@ export default function WhyChooseUs() {
           scrollTrigger: {
             trigger: titleRef.current,
             start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
           },
         }
       );
@@ -40,6 +42,8 @@ export default function WhyChooseUs() {
           scrollTrigger: {
             trigger: circleRef.current,
             start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
           },
         }
       );
@@ -56,6 +60,8 @@ export default function WhyChooseUs() {
           scrollTrigger: {
             trigger: circleRef.current,
             start: "top 70%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
           },
         }
       );

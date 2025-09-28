@@ -15,33 +15,58 @@ export default function AppPreview() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Left content animation
-      gsap.fromTo(leftContentRef.current,
+      gsap.fromTo(
+        leftContentRef.current,
         { x: -100, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, scrollTrigger: {
-          trigger: leftContentRef.current,
-          start: "top 80%"
-        }}
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: leftContentRef.current,
+            start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
+          },
+        }
       );
-      
+
       // Right content animation
-      gsap.fromTo(rightContentRef.current,
+      gsap.fromTo(
+        rightContentRef.current,
         { x: 100, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, scrollTrigger: {
-          trigger: rightContentRef.current,
-          start: "top 80%"
-        }}
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: rightContentRef.current,
+            start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
+          },
+        }
       );
-      
+
       // Cards animation
-      gsap.fromTo(cardsRef.current,
+      gsap.fromTo(
+        cardsRef.current,
         { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6, stagger: 0.1, scrollTrigger: {
-          trigger: rightContentRef.current,
-          start: "top 70%"
-        }}
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: rightContentRef.current,
+            start: "top 70%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
+          },
+        }
       );
     }, sectionRef);
-    
+
     return () => ctx.revert();
   }, []);
 
@@ -89,7 +114,10 @@ export default function AppPreview() {
                 />
               </svg>
 
-              <div ref={(el) => el && (cardsRef.current[0] = el)} className="absolute top-8 right-8 bg-white rounded-lg p-3 shadow-lg">
+              <div
+                ref={(el) => el && (cardsRef.current[0] = el)}
+                className="absolute top-8 right-8 bg-white rounded-lg p-3 shadow-lg"
+              >
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
                     <svg
@@ -107,7 +135,10 @@ export default function AppPreview() {
                 </div>
               </div>
 
-              <div ref={(el) => el && (cardsRef.current[1] = el)} className="absolute top-1/2 left-4 bg-white rounded-lg p-4 shadow-lg">
+              <div
+                ref={(el) => el && (cardsRef.current[1] = el)}
+                className="absolute top-1/2 left-4 bg-white rounded-lg p-4 shadow-lg"
+              >
                 <div className="w-32 h-20 bg-gray-100 rounded mb-2 relative">
                   <svg
                     className="absolute inset-0 w-full h-full"
@@ -124,7 +155,10 @@ export default function AppPreview() {
                 <div className="text-xs text-gray-600">10AM</div>
               </div>
 
-              <div ref={(el) => el && (cardsRef.current[2] = el)} className="absolute bottom-8 left-8 bg-white rounded-lg p-3 shadow-lg">
+              <div
+                ref={(el) => el && (cardsRef.current[2] = el)}
+                className="absolute bottom-8 left-8 bg-white rounded-lg p-3 shadow-lg"
+              >
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <span className="text-sm font-medium">Task Completed</span>
@@ -132,7 +166,10 @@ export default function AppPreview() {
                 <div className="text-2xl font-bold">12</div>
               </div>
 
-              <div ref={(el) => el && (cardsRef.current[3] = el)} className="absolute top-1/3 right-4 bg-white rounded-lg p-3 shadow-lg">
+              <div
+                ref={(el) => el && (cardsRef.current[3] = el)}
+                className="absolute top-1/3 right-4 bg-white rounded-lg p-3 shadow-lg"
+              >
                 <div className="text-sm font-medium mb-2">
                   Scheduled time for work
                 </div>

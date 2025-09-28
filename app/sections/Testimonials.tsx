@@ -42,24 +42,41 @@ export default function Testimonials() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Title animation
-      gsap.fromTo(titleRef.current,
+      gsap.fromTo(
+        titleRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, scrollTrigger: {
-          trigger: titleRef.current,
-          start: "top 80%"
-        }}
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
+          },
+        }
       );
-      
+
       // Cards animation
-      gsap.fromTo(cardsRef.current,
+      gsap.fromTo(
+        cardsRef.current,
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%"
-        }}
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
+          },
+        }
       );
     }, sectionRef);
-    
+
     return () => ctx.revert();
   }, []);
 
@@ -79,10 +96,7 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div key={index} ref={(el) => el && (cardsRef.current[index] = el)}>
-              <TestimonialCard
-                {...testimonial}
-                isMiddle={index === 1}
-              />
+              <TestimonialCard {...testimonial} isMiddle={index === 1} />
             </div>
           ))}
         </div>

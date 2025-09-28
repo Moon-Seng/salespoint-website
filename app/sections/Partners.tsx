@@ -19,10 +19,11 @@ export default function Partners() {
           duration: 0.5,
           stagger: 0.1,
           ease: "power2.out",
-          scrub: true,
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
           },
         }
       );

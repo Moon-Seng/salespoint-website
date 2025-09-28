@@ -8,6 +8,7 @@ import AppPreview from "./sections/AppPreview";
 import Stats from "./sections/Stats";
 import Testimonials from "./sections/Testimonials";
 import Security from "./sections/Security";
+import Pricing from "./sections/Pricing";
 import Footer from "./sections/Footer";
 
 export default function Home() {
@@ -22,7 +23,8 @@ export default function Home() {
       <FeatureCards />
       <AppPreview />
       <Stats />
-      <Testimonials />
+      {/* <Testimonials /> */}
+      <Pricing />
       <Footer />
     </div>
   );

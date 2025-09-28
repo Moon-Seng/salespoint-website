@@ -51,6 +51,8 @@ export default function Security() {
           scrollTrigger: {
             trigger: leftContentRef.current,
             start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
           },
         }
       );
@@ -65,6 +67,8 @@ export default function Security() {
           scrollTrigger: {
             trigger: rightContentRef.current,
             start: "top 80%",
+            end: "bottom 10%",
+            toggleActions: "play pause restart pause",
           },
         }
       );
@@ -82,6 +86,8 @@ export default function Security() {
             scrollTrigger: {
               trigger: secondSectionRef.current,
               start: "top 80%",
+              end: "bottom 10%",
+              toggleActions: "play pause restart pause",
             },
           }
         );
@@ -115,10 +121,16 @@ export default function Security() {
   ];
 
   return (
-    <section ref={sectionRef} className="py-10 md:py-16 lg:py-20 bg-white mt-10 md:mt-20 lg:mt-40">
+    <section
+      ref={sectionRef}
+      className="py-10 md:py-16 lg:py-20 bg-white mt-10 md:mt-20 lg:mt-40"
+    >
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-[48%_55%] gap-8 md:gap-12 lg:gap-16 items-center">
-          <div ref={leftContentRef} className="space-y-6 md:space-y-8 w-full px-4 md:px-0 lg:w-full">
+          <div
+            ref={leftContentRef}
+            className="space-y-6 md:space-y-8 w-full px-4 md:px-0 lg:w-full"
+          >
             <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 font-space-grotesk leading-tight">
               Better Security To Better Protection An Experience Of Strength.
             </h2>
@@ -201,7 +213,9 @@ export default function Security() {
                     }`}
                   >
                     <div className="pb-3 md:pb-4">
-                      <p className="text-[#4F4F4F] text-sm md:text-base">{item.content}</p>
+                      <p className="text-[#4F4F4F] text-sm md:text-base">
+                        {item.content}
+                      </p>
                     </div>
                   </div>
                 </div>

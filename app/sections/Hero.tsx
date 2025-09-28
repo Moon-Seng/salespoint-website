@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { gsap } from "../../lib/gsap";
+import { gsap, ScrollTrigger } from "../../lib/gsap";
 import Container from "../components/Container";
 import Button from "../components/Button";
 import CheckIcon from "../components/CheckIcon";
@@ -20,6 +20,12 @@ export default function Hero() {
           duration: 0.8,
           stagger: 0.2,
           ease: "power2.out",
+          scrollTrigger: {
+            trigger: leftContentRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play pause restart pause",
+          },
         }
       );
     }
@@ -35,6 +41,12 @@ export default function Hero() {
           duration: 1,
           delay: 0.3,
           ease: "power2.out",
+          scrollTrigger: {
+            trigger: rightContentRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play pause restart pause",
+          },
         }
       );
     }
