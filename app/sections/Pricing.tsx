@@ -42,20 +42,20 @@ export default function Pricing() {
       } catch (error) {
         console.error("Failed to fetch pricing data:", error);
         const mockData: PricingPlan[] = [
-          {
-            id: 4,
-            name: "Scales",
-            price: "80000.00",
-            yearly_price: "960000.00",
-            is_popular: true,
-            features: [
-              { name: "Orders Limitation", limitation: "Unlimited" },
-              { name: "Products Limitation", limitation: "Unlimited" },
-              { name: "Admin Limitation", limitation: "50" },
-              { name: "Employee Limitation", limitation: "50" },
-            ],
-            description: "For growing businesses",
-          },
+          // {
+          //   id: 4,
+          //   name: "Scales",
+          //   price: "80000.00",
+          //   yearly_price: "960000.00",
+          //   is_popular: true,
+          //   features: [
+          //     { name: "Orders Limitation", limitation: "Unlimited" },
+          //     { name: "Products Limitation", limitation: "Unlimited" },
+          //     { name: "Admin Limitation", limitation: "50" },
+          //     { name: "Employee Limitation", limitation: "50" },
+          //   ],
+          //   description: "For growing businesses",
+          // },
         ];
         setPricingData(mockData);
       }

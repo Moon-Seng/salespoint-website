@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Container from "../components/Container";
@@ -8,11 +8,26 @@ import LetterLogo from "../components/LetterLogo";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsVisible(currentScrollY < lastScrollY || currentScrollY < 10);
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className={`fixed top-0 left-0 right-0 bg-white shadow-sm transition-transform duration-300 z-50 ${
+      isVisible ? 'translate-y-0' : '-translate-y-full'
+    }`}>
       <Container className="relative flex justify-between items-center py-4">
         <div className="flex items-center space-x-2">
           <LetterLogo />
